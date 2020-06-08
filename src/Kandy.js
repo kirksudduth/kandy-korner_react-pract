@@ -1,24 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
+import ApplicationViews from "./components/ApplicationViews";
 import "./Kandy.css";
 
-function Kandy() {
+const Kandy = () => {
+  const isAuthenticated = () => sessionStorage.getItem("credentials") !== null;
+
+  const [hasUser, setHasUser] = useState(isAuthenticated());
+  const setUser = (user) => {
+    sessionStorage.setItem("credentials", JSON.stringify(user));
+    setHasUser(isAuthenticated());
+  };
   return (
-    <div className="Kandy">
-      <header className="Kandy-header">
-        <p>
-          Edit <code>src/Kandy.js</code> and save to reload.
-        </p>
-        <a
-          className="Kandy-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <ApplicationViews hasUser={hasUser} setUser={setUser} />
+    </>
   );
-}
+};
 
 export default Kandy;
