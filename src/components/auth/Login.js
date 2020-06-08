@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 const Login = (props) => {
+  console.log(props);
   const [credentials, setCredentials] = useState({
     username: "",
     password: "",
@@ -16,6 +17,39 @@ const Login = (props) => {
     event.preventDefault();
 
     props.setUser(credentials);
-    props.history.push("/products");
+    // props.history.push("/products");
   };
+
+  return (
+    <>
+      <h1>Ma Houchens' Kandy Kounter</h1>
+      <form onSubmit={handleLogin}>
+        <fieldset>
+          <h3>Sign in, Sweetie!</h3>
+          <div className="formgrid">
+            <label htmlFor="inputUsername">Username: </label>
+            <input
+              onChange={handleFieldChange}
+              type="text"
+              id="username"
+              placeholder="Username"
+              required=""
+              autoFocus=""
+            />
+            <label htmlFor="inputPassword">Password: </label>
+            <input
+              onChange={handleFieldChange}
+              type="password"
+              id="password"
+              placeholder="Password"
+              required=""
+            />
+          </div>
+          <button type="submit">Sign in</button>
+        </fieldset>
+      </form>
+    </>
+  );
 };
+
+export default Login;
