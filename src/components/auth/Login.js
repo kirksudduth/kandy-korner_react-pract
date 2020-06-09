@@ -1,11 +1,12 @@
 import React, { useState } from "react";
+import KandyManager from "../../modules/KandyManager";
 
 const Login = (props) => {
-  console.log(props);
   const [credentials, setCredentials] = useState({
     username: "",
     password: "",
   });
+  console.log(credentials);
 
   const handleFieldChange = (evt) => {
     const stateToChange = { ...credentials };
@@ -13,11 +14,16 @@ const Login = (props) => {
     setCredentials(stateToChange);
   };
 
+  const checkUsername = () => {
+    KandyManager.getEmployees().then((employees) =>
+      employees.find(credentials.username)
+    );
+  };
+
   const handleLogin = (event) => {
     event.preventDefault();
-
     props.setUser(credentials);
-    // props.history.push("/products");
+    props.history.push("/products");
   };
 
   return (

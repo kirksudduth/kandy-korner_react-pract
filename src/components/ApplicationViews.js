@@ -17,13 +17,13 @@ const ApplicationViews = (props) => {
           return <Login setUser={setUser} hasUser={hasUser} {...props} />;
         }}
       />
-      <Route
+      {/* <Route
         exact
         path="/products"
         render={(props) => {
           <ProductList />;
         }}
-      />
+      /> */}
     </>
   );
 };
