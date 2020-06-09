@@ -7,4 +7,9 @@ export default {
   getEmployees() {
     return fetch(`${remoteURL}/employees`).then((result) => result.json());
   },
+  getEmployeeByUsername(username) {
+    return fetch(`${remoteURL}/employees?username=${username}`).then((result) =>
+      result.json()
+    );
+  },
 };

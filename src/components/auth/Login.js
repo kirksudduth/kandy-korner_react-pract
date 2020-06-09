@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import KandyManager from "../../modules/KandyManager";
+import { withRouter } from "react-router-dom";
 
 const Login = (props) => {
   const [credentials, setCredentials] = useState({
     username: "",
     password: "",
   });
-  console.log(credentials);
 
   const handleFieldChange = (evt) => {
     const stateToChange = { ...credentials };
@@ -14,14 +14,30 @@ const Login = (props) => {
     setCredentials(stateToChange);
   };
 
-  const checkUsername = () => {
-    KandyManager.getEmployees().then((employees) =>
-      employees.find(credentials.username)
+  const checkUser = (event) => {
+    event.preventDefault();
+    console.log(credentials.username);
+    KandyManager.getEmployeeByUsername(credentials.username).then(
+      (employee) => {
+        console.log(employee);
+        if (credentials.username !== employee[0].username) {
+          window.alert("You don't work here!");
+        } else if (
+          credentials.username === employee[0].username &&
+          credentials.password === employee[0].password
+        ) {
+          handleLogin();
+        } else if (
+          credentials.username === employee[0].username &&
+          credentials.password !== employee[0].password
+        ) {
+          window.alert("THAT'S THE WRONG PASSWORD YA BIG DOOFUS.");
+        }
+      }
     );
   };
 
-  const handleLogin = (event) => {
-    event.preventDefault();
+  const handleLogin = () => {
     props.setUser(credentials);
     props.history.push("/products");
   };
@@ -29,7 +45,7 @@ const Login = (props) => {
   return (
     <>
       <h1>Ma Houchens' Kandy Kounter</h1>
-      <form onSubmit={handleLogin}>
+      <form onSubmit={checkUser}>
         <fieldset>
           <h3>Sign in, Sweetie!</h3>
           <div className="formgrid">
@@ -58,4 +74,4 @@ const Login = (props) => {
   );
 };
 
-export default Login;
+export default withRouter(Login);
