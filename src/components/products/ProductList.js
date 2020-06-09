@@ -17,7 +17,11 @@ const ProductList = (props) => {
     getProducts();
   }, []);
 
-  return <></>;
+  return (
+    <>
+      <h1>P R O D U C T S</h1>
+    </>
+  );
 };
 
 export default ProductList;
