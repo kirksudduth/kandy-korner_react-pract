@@ -24,7 +24,7 @@ const Kandy = (props) => {
       {!hasUser && <Login setUser={setUser} hasUser={hasUser} {...props} />}
       {hasUser && (
         <>
-          {/* <NavBar hasUser={hasUser} clearUser={clearUser} /> */}
+          <NavBar clearUser={clearUser} />
           <ApplicationViews
             clearUser={clearUser}
             hasUser={hasUser}
