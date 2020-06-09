@@ -6,6 +6,7 @@ const Login = (props) => {
   const [credentials, setCredentials] = useState({
     username: "",
     password: "",
+    isSupervisor: false,
   });
 
   const handleFieldChange = (evt) => {
@@ -16,12 +17,17 @@ const Login = (props) => {
 
   const checkUser = (event) => {
     event.preventDefault();
-    console.log(credentials.username);
     KandyManager.getEmployeeByUsername(credentials.username).then(
       (employee) => {
-        console.log(employee);
         if (credentials.username !== employee[0].username) {
           window.alert("You don't work here!");
+        } else if (
+          credentials.username === employee[0].username &&
+          credentials.password === employee[0].password &&
+          employee[0].isSupervisor === true
+        ) {
+          credentials.isSupervisor = true;
+          handleLogin();
         } else if (
           credentials.username === employee[0].username &&
           credentials.password === employee[0].password
@@ -31,7 +37,7 @@ const Login = (props) => {
           credentials.username === employee[0].username &&
           credentials.password !== employee[0].password
         ) {
-          window.alert("THAT'S THE WRONG PASSWORD YA BIG DOOFUS.");
+          window.alert("THAT'S THE WRONG PASSWORD, YA BIG DOOFUS.");
         }
       }
     );
