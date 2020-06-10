@@ -10,6 +10,7 @@ const ProductList = (props) => {
   const getProducts = () => {
     return KandyManager.getProducts().then((products) => {
       setProducts(products);
+      console.log(products);
     });
   };
 
@@ -20,6 +21,22 @@ const ProductList = (props) => {
   return (
     <>
       <h1>P R O D U C T S</h1>
+      <section className="section-content">
+        <button
+          type="button"
+          className="btn"
+          onClick={() => {
+            props.history.push("/products/new");
+          }}
+        >
+          New Candy Product
+        </button>
+      </section>
+      <div className="container-cards">
+        {products.map((product) => (
+          <ProductCard key={product.id} product={product} {...props} />
+        ))}
+      </div>
     </>
   );
 };

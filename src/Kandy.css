@@ -1,38 +1,20 @@
-.Kandy {
-  text-align: center;
-}
-
-.Kandy-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .Kandy-logo {
-    animation: Kandy-logo-spin infinite 20s linear;
-  }
-}
-
-.Kandy-header {
-  background-color: #282c34;
-  min-height: 100vh;
+nav .container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding: 0;
+  margin-bottom: 0;
 }
 
-.Kandy-link {
-  color: #61dafb;
+nav .container li {
+  flex: 1;
+  padding: 10px;
+  text-align: center;
+  font-size: 1.5em;
+  color: cornsilk;
+  box-sizing: border-box;
+  background-color: #a77262;
+  list-style-type: none;
 }
 
-@keyframes Kandy-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.nav-link {
+  color: tomato;
 }
