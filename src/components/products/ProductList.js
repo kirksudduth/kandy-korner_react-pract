@@ -22,22 +22,20 @@ const ProductList = (props) => {
     <>
       <h1>P R O D U C T S</h1>
       <section className="section-content">
-          <button
+        <button
           type="button"
           className="btn"
           onClick={() => {
-              props.history.push("/products/new")
-          }}>
-              New Candy Product
-          </button>
+            props.history.push("/products/new");
+          }}
+        >
+          New Candy Product
+        </button>
       </section>
       <div className="container-cards">
-          {products.map((product) => (
-              <ProductCard
-              key={product.id}
-              product={product}
-              
-          ))}
+        {products.map((product) => (
+          <ProductCard key={product.id} product={product} {...props} />
+        ))}
       </div>
     </>
   );
