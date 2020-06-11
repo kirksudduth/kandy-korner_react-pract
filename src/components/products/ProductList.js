@@ -8,9 +8,9 @@ const ProductList = (props) => {
   const [products, setProducts] = useState([]);
 
   const getProducts = () => {
-    return KandyManager.getProducts().then((products) => {
-      setProducts(products);
+    return KandyManager.getProductsWithProductType().then((products) => {
       console.log(products);
+      setProducts(products);
     });
   };
 
